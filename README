@@ -1,0 +1,47 @@
+This extension serves as a replacement for the class CAssetManager. It publishes content on the Amazon AWS S3, allowing you to enable and use a CloudFront CDN for your assets.
+
+##Requirements
+
+* A cache component set.
+* An account on Amazon AWS S3
+
+##Usage
+
+To install just unzip into the protected folder . Warning! I used as a basis the extension [ES3](http://www.yiiframework.com/extension/es3), so if you have it installed you may have name conflicts.
+
+Basic configuration:
+
+~~~
+[php]
+'components' = array(
+		......
+		
+		'cache'=>array(
+            'class'=>'system.caching.CMemCache',
+            'servers'=>array(
+                array('host'=>'localhost', 'port'=>11211),
+            ),
+        ),
+        's3' => array(
+            'class' => 'ext.s3.ES3',
+            'aKey'=>'ADD YOUR AKEY HERE', 
+        	'sKey'=>'ADD YOUR SKEY HERE',
+        ),
+        'assetManager' => array(
+            'class' => 'S3AssetManager',
+            'host' => 'Your-bucket.s3.amazonaws.com', // changing this you can point to your CloudFront hostname
+            'bucket' => 'Your-bucket',
+            'path' => 'assets', //or any other folder you want
+        ),
+        
+        ......
+    )
+~~~
+
+Ready! Your assets will be stored on Amazon!
+
+##Resources
+
+
+ * [Project page](https://github.com/andremetzen/yii-s3assetmanager)
+
