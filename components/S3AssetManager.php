@@ -41,7 +41,8 @@ class S3AssetManager extends CAssetManager
 
     private function getS3()
     {
-        throw new CException('You need to configure the S3 component or set the variable s3Component properly');
+        if (!Yii::app()->{$this->s3Component})
+        	throw new CException('You need to configure the S3 component or set the variable s3Component properly');
         return Yii::app()->{$this->s3Component};
     }
 
