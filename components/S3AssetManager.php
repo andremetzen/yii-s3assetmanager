@@ -82,7 +82,7 @@ class S3AssetManager extends CAssetManager
                 $dir = $this->hash($hashByName ? basename($src) : $src.filemtime($src));
                 $dstDir = $this->getBasePath().DIRECTORY_SEPARATOR.$dir;
 
-                if ($this->getCache()->get($this->getCacheKey($path)) === false || true)
+                if ($this->getCache()->get($this->getCacheKey($path)) === false)
                 {
                     $files = CFileHelper::findFiles($src, array(
                             'exclude' => $this->excludeFiles,
